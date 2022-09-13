@@ -11,8 +11,12 @@ int main()
     std::cout << "Hello world!" << std::endl;
     
     Button powerButton{27}; //이 버튼은 파워버튼이라고 의미부여를 했음
-    Led light(25);
-    View view(&light);
+    Led light1(21);
+    Led light2(22);
+    Led light3(23);
+    Led light4(24);
+    Led light5(25);
+    View view(&light1, &light2, &light3, &light4, &light5);
     Controller control(&view);
     Listener listener(&powerButton, &control);
 
