@@ -3,6 +3,8 @@
 #include "Led.h"
 #include <wiringPi.h>
 #include "Listener.h"
+#include "Controller.h"
+#include "View.h"
 
 int main()
 {
@@ -10,11 +12,14 @@ int main()
     
     Button powerButton{27}; //이 버튼은 파워버튼이라고 의미부여를 했음
     Led light(25);
-    Listener listener(&powerButton, &light);
+    View view(&light);
+    Controller control(&view);
+    Listener listener(&powerButton, &control);
 
     while(1)
     {
         listener.checkEvent();
+        view.lightView();
         delay(50);
     }
     return 0;
